@@ -5,6 +5,18 @@ function faceImage = faceDetection(inputImage)
 
 %% Turn the image into grayscale 
 
+YCbCr = rgb2ycbcr(inputImage);
+Cr=YCbCr(:,:,3);
+H = size(inputImage, 1);
+W = size(inputImage, 2);
+S=zeros(H,W);
+[SkinIndexRow,SkinIndexCol] =find(10<Cr & Cr<150);
+for i=1:length(SkinIndexRow)
+    S(SkinIndexRow(i),SkinIndexCol(i))=1;
+end
+
+imshow(S);
+
 bwImage = rgb2gray(inputImage);
 
 %% Create a binary gradient mask

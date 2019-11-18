@@ -39,8 +39,8 @@ end
 SE = strel('disk', 4);
 b2 = imopen(maskImage, SE);
 b_clean = imclose(b2, SE); % Cleaned up binary image
-
+imshow(b_clean);
 mask = im2double(imfill(b_clean,'holes'));
-imshow(mask);
+figure;imshow(mask);
 end
 
