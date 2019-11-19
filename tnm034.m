@@ -5,7 +5,7 @@
 % i.e. ‘1’, ‘2’,…,‘16’ for the persons belonging to ‘db1’ and ‘0’ for all other faces. % 
 function id = tnm034(im) % 
 
-% Read in all images.
+% Read in all images -> will be turned into loading of database
 DirPath = 'Images/DB1/';
 S = dir(fullfile(DirPath,'db1_*.jpg')); % pattern to match filenames.
 for k = 1:numel(S)
