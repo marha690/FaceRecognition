@@ -7,12 +7,13 @@ function eyeMapChrominance = eyeMapC(image,ycbcr_image)
 % All other terms are normalized to the range [0, 255] as well
 
 %% Separate into Chrominance channels and necessary variables
-imshow(image); figure; imshow(ycbcr_image);
+imshow(image); figure; imshow
 cb = ycbcr_image(:,:,2);
 cr = ycbcr_image(:,:,3);
 cb2 = cb.^2;
 normCb = (255-cb).^2;
 cb_cr = cb./cr;
+
 
 %% Normalization to range[0,255]
 
