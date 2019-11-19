@@ -17,10 +17,11 @@ end
 % Get image from struct.
 % test = Images(6).data; 6 = id of the image.
 
-%% Finding the face in an image
+%% Converting image into YCbCr and getting a face mask
 
-face = faceDetection(im);
-imshow(face);
+YCBCRIm = rgb2ycbcr(im);
+faceMaskIm = faceMask(im);
+eyeMapIm = eyeMap(im, YCBCRIm, faceMaskIm); 
 
 %%
 % Rotates the image.
