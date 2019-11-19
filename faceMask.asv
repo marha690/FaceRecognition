@@ -14,14 +14,12 @@ maskImage = zeros(H, W);
 
 %% Convert to YCbCr color space 
 YCbCr = rgb2ycbcr(inputImage);
-Y = YCbCr(:,:,1);
 Cb = YCbCr(:,:,2);
 Cr = YCbCr(:,:,3);
 
 %% Detect skin, find from threshold in color
 
-% Thresholds as proposed by Rahman, Jhumur, Das, Ahmad in article
-% [r,c,v] = find(Cb>70 & Cb<135 & Cr>90 & Cr<130 & Y>90 & Y<180);
+% Thresholds as proposed by 
 [r,c,v] = find(Cb>=70 & Cb<=120 & Cr>=135 & Cr<=173);
     numind = size(r,1);
 
