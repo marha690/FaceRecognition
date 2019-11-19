@@ -5,6 +5,7 @@
 clear;
 %Read in variables.
 Image = imread('images/DB0/db0_1.jpg');
+
 Image = adjustImageValues(Image);
 
 imshow(Image);
