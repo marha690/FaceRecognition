@@ -1,4 +1,4 @@
-function eyeMapChrominance = eyeMapC(image,ycbcr_image)
+function eyeMapChrominance = eyeMapC(image)
 %EYEMASKC Creates an eye mask for chrominance channel 
 % USes that for chrominance around eyes, Cr are low and Cb are high
 % Equation fo chrominance eye map: EyeMapC = 1/3 * ((Cb)^2 + (Cr*)^2 + (Cb/Cr))
@@ -8,6 +8,7 @@ function eyeMapChrominance = eyeMapC(image,ycbcr_image)
 
 %% Separate into Chrominance channels and necessary variables
 
+ycbcr_image = rgb2ycbcr(image);
 cb = im2double(ycbcr_image(:,:,2));
 cb2 = cb.*cb;
 cr = im2double(ycbcr_image(:,:,3));
@@ -19,7 +20,6 @@ cb_cr = cb./cr;
 cb2 = rescale(cb2)*255;
 invCr2 = rescale(invCr2)*255;
 cb_cr = rescale(cb_cr)*255;
-
 
 %% Creation of eye map
 

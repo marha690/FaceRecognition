@@ -1,0 +1,7 @@
+function [outputArg1,outputArg2] = eyeMaskL(inputArg1,inputArg2)
+%EYEMASKL Using the fact that eyes usually contains both dark and bright
+% pixels in the luma component, we use this to emphazise these pixels
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+end
+

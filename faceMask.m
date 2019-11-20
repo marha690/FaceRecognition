@@ -30,20 +30,11 @@ for i=1:numind
         maskImage(r(i),c(i)) = 1;
 end
 
-%[SkinIndexRow,SkinIndexCol] =find(Cr > 145 & Cr<180);
-%for i=1:length(SkinIndexRow)
-%    maskImage(SkinIndexRow(i),SkinIndexCol(i))=1;
-%end
-
-%maskIm = im2double(imfill(maskImage,'holes'));
-%seD = strel('diamond',1);
-%maskIm = imerode(maskIm,seD);
-%maskIm = imerode(maskIm,seD);
 SE = strel('disk', 4);
 b2 = imopen(maskImage, SE);
 b_clean = imclose(b2, SE); % Cleaned up binary image
-imshow(b_clean);
+%imshow(b_clean);
 mask = im2double(imfill(b_clean,'holes'));
-figure;imshow(mask);
+%figure;imshow(mask);
 end
 
