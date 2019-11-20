@@ -5,6 +5,6 @@ function eyeMaskImage = eyeMask(image,image_ycbcr, faceMask)
 %% The final eye mask will be the sum of two separate eye masks, Chrominance and Luminance
 
 
-eyeMaskImage = originalImage + YCbCr_original + faceMask;
+%eyeMaskImage = originalImage + YCbCr_original + faceMask;
 end
 

@@ -1,7 +1,0 @@
-function eyeMaskImage = eyeMask(originalImage,YCbCr_original, faceMask)
-%EYEMASK Returns an eye mask if eyes can be determined in an image
-%of a face. Will check weather the eyes consists in the facemask or not. 
-
-eyeMaskImage = originalImage + YCbCr_original + faceMask;
-end
-
