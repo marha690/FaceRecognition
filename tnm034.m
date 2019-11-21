@@ -13,9 +13,9 @@ ImageVectors = CreateDatabase();
 
 %% Converting image into YCbCr and getting a face mask
 
-YCBCRIm = rgb2ycbcr(im);
-faceMaskIm = faceMask(im);
-eyeMapIm = eyeMap(im, YCBCRIm, faceMaskIm); 
+% YCBCRIm = rgb2ycbcr(im);
+% faceMaskIm = faceMask(im);
+% eyeMapIm = eyeMap(im, YCBCRIm, faceMaskIm); 
 
 
 
