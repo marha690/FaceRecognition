@@ -11,6 +11,13 @@ ImageVectors = CreateDatabase();
 % Make the information needed for eigenface identity check.
 [mean, A, Eigenfaces] = makeEigenface(ImageVectors);
 
+%% Converting image into YCbCr and getting a face mask
+
+YCBCRIm = rgb2ycbcr(im);
+faceMaskIm = faceMask(im);
+eyeMapIm = eyeMap(im, YCBCRIm, faceMaskIm); 
+
+
 
 %% Test if the image is inside the database.
 

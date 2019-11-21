@@ -14,11 +14,14 @@ maskImage = zeros(H, W);
 
 %% Convert to YCbCr color space 
 YCbCr = rgb2ycbcr(inputImage);
+Y = YCbCr(:,:,1);
 Cb = YCbCr(:,:,2);
 Cr = YCbCr(:,:,3);
 
 %% Detect skin, find from threshold in color
 
+% Thresholds as proposed by Rahman, Jhumur, Das, Ahmad in article
+% [r,c,v] = find(Cb>70 & Cb<135 & Cr>90 & Cr<130 & Y>90 & Y<180);
 [r,c,v] = find(Cb>=70 & Cb<=120 & Cr>=135 & Cr<=173);
     numind = size(r,1);
 
@@ -27,20 +30,11 @@ for i=1:numind
         maskImage(r(i),c(i)) = 1;
 end
 
-%[SkinIndexRow,SkinIndexCol] =find(Cr > 145 & Cr<180);
-%for i=1:length(SkinIndexRow)
-%    maskImage(SkinIndexRow(i),SkinIndexCol(i))=1;
-%end
-
-%maskIm = im2double(imfill(maskImage,'holes'));
-%seD = strel('diamond',1);
-%maskIm = imerode(maskIm,seD);
-%maskIm = imerode(maskIm,seD);
 SE = strel('disk', 4);
 b2 = imopen(maskImage, SE);
 b_clean = imclose(b2, SE); % Cleaned up binary image
-imshow(b_clean);
+%imshow(b_clean);
 mask = im2double(imfill(b_clean,'holes'));
-figure;imshow(mask);
+%figure;imshow(mask);
 end
 
