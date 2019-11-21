@@ -1,0 +1,16 @@
+Modify eye map
+
+Implemented the eye map for luminance channel, modified input parameters
+for both luminance and chrominance eye map. Added the merge between the
+two eye maps to create the final eye map. 
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch eyeMap
+# Changes to be committed:
+#	modified:   eyeMap.m
+#	modified:   eyeMapC.m
+#	new file:   eyeMapL.asv
+#	modified:   eyeMapL.m
+#	modified:   faceMask.m
+#
