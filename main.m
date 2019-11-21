@@ -8,7 +8,6 @@ Image = imread('images/DB0/db0_1.jpg');
 
 Image = adjustImageValues(Image);
 
-imshow(Image);
 
 %Start face recognintion process.
 value = tnm034(Image);

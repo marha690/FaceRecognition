@@ -11,11 +11,18 @@ S = dir(fullfile(DirPath,'db1_*.jpg')); % pattern to match filenames.
 for k = 1:numel(S)
     F = fullfile(DirPath,S(k).name);
     I = imread(F);
-    Images(k).data = I; % save images.
+    % My code to store a image in a column.
+    I = rgb2gray(I);
+    I = I(1:300,1:350);
+%     I = I(:);
+    Images(:,:,k) = I(:,:); % save images.
+%     Images(:,k) = I(:)'; % save images.
 end
 
-% Get image from struct.
-% test = Images(6).data; 6 = id of the image.
+
+% all images of the training set are stored in a single matrix T, 
+% where each column of the matrix is an image.
+test = makeEigenface(Images);
 
 %% Finding the face in an image
 
