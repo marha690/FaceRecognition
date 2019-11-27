@@ -1,5 +1,7 @@
 function out = adjustImageValues(im)
 
+original = im;
+
 if isa(im, 'uint8')||isa(im, 'uint16')
     im = im2double(im);
 end
@@ -27,7 +29,7 @@ Value = max(max(AR,AG),AB) / min(min(AR,AG),AB);
 Acceptance = 0.01;
 
 if ( abs(1-Value) < Acceptance )
-    out = im;
+    out = original;
     fprintf('No Color adjustment was done. \n');
     return
 end
@@ -58,3 +60,4 @@ for x = 1:size(im,1)
 end
 
 out = im;
+imshow(out); figure;

@@ -19,13 +19,14 @@ end
 
 %% Converting image into YCbCr and getting a face mask
 
-YCBCRIm = rgb2ycbcr(im);
 faceMaskIm = faceMask(im);
-eyeMapIm = eyeMap(im, YCBCRIm, faceMaskIm); 
+%imshow(faceMaskIm);
+eyeMapn = eyeMap(im, faceMaskIm);
+test = eyeDetect(eyeMapn, faceMaskIm);
 
 %%
 % Rotates the image.
-im = faceRotation(im);
+%im = faceRotation(im);
 
 
 % Give id the correct value.

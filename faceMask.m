@@ -20,9 +20,7 @@ Cr = YCbCr(:,:,3);
 
 %% Detect skin, find from threshold in color
 
-% Thresholds as proposed by Rahman, Jhumur, Das, Ahmad in article
-% [r,c,v] = find(Cb>70 & Cb<135 & Cr>90 & Cr<130 & Y>90 & Y<180);
-[r,c,v] = find(Cb>=70 & Cb<=120 & Cr>=135 & Cr<=173);
+[r,c,v] = find(Cb>=70 & Cb<=135 & Cr>=125 & Cr<=190 & Y>70 & Y<200);
     numind = size(r,1);
 
 for i=1:numind
@@ -37,4 +35,3 @@ b_clean = imclose(b2, SE); % Cleaned up binary image
 mask = im2double(imfill(b_clean,'holes'));
 %figure;imshow(mask);
 end
-

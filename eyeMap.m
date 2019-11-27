@@ -16,6 +16,6 @@ eyeMapImage = mapC .* mapL;
 
 %% Do we need to use more morphological operations??
 
-imshow(eyeMapImage);
+%imshow(eyeMapImage);
 end
 
