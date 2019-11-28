@@ -4,10 +4,10 @@
 
 clear;
 %Read in variables.
-Image = imread('images/DB1/db01_01.jpg');
-imshow(Image);
+Image = imread('images/DB1/db1_03.jpg');
+%imshow(Image);
 Image2 = lightCorrection(Image);
-figure; imshow(Image2); figure;
+%figure; imshow(Image2); figure;
 %Start face recognintion process.
 value = tnm034(Image2);
 
