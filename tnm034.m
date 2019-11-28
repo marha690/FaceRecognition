@@ -18,12 +18,13 @@ end
 % test = Images(6).data; 6 = id of the image.
 
 %% Converting image into YCbCr and getting a face mask
-
+% figure; imshow(im);
 faceMaskIm = faceMask(im);
-%imshow(faceMaskIm);
+% imshow(faceMaskIm);
 eyeMapn = eyeMap(im, faceMaskIm);
-test = eyeDetect(eyeMapn, faceMaskIm);
 
+[P1, P2] = eyeDetect(eyeMapn, faceMaskIm);
+% figure; imshow(test);
 %%
 % Rotates the image.
 %im = faceRotation(im);

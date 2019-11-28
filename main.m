@@ -4,7 +4,7 @@
 
 clear;
 %Read in variables.
-Image = imread('images/DB1/db1_03.jpg');
+Image = imread('images/DB0/db0_1.jpg');
 %imshow(Image);
 Image2 = lightCorrection(Image);
 %figure; imshow(Image2); figure;

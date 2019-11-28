@@ -19,7 +19,6 @@ Cb = YCbCr(:,:,2);
 Cr = YCbCr(:,:,3);
 
 %% Detect skin, find from threshold in color
-
 [r,c,v] = find(Cb>=70 & Cb<=135 & Cr>=125 & Cr<=190 & Y>70 & Y<180);
     numind = size(r,1);
 
@@ -31,7 +30,14 @@ end
 SE = strel('disk', 4);
 b2 = imopen(maskImage, SE);
 b_clean = imclose(b2, SE); % Cleaned up binary image
-%imshow(b_clean);
-mask = im2double(imfill(b_clean,'holes'));
-%figure;imshow(mask);
+% figure;imshow(b_clean);
+mask = im2double(imfill(b_clean));
+
+% Make morphological operation to remove holes in the mask.
+se = strel('disk',10,8)
+mask = imdilate(mask, se);
+mask = imfill(mask);
+mask = imerode(mask, se);
+
+% figure;imshow(mask);
 end
