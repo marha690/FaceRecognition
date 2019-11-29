@@ -1,5 +1,7 @@
 function out = adjustImageValues(im)
 
+original = im;
+
 if isa(im, 'uint8')||isa(im, 'uint16')
     im = im2double(im);
 end
@@ -28,7 +30,7 @@ Acceptance = 0.01;
 
 if ( abs(1-Value) < Acceptance )
     out = im;
-    %fprintf('No Color adjustment was done. \n');
+    fprintf('No Color adjustment was done. \n');
     return
 end
 
