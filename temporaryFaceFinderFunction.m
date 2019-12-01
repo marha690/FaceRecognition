@@ -1,6 +1,10 @@
 function result = temporaryFaceFinderFunction(im)
+
+    height = 250;
+    width = 200;
+    result = -1; 
+    %% Gray world lighting compensation
     
-    % Gray world lighting compensation
 %     im = adjustImageValues(im); %old function
     im = lightCorrection(im);
     
@@ -8,12 +12,21 @@ function result = temporaryFaceFinderFunction(im)
 
     % figure; imshow(im);
     faceMaskIm = faceMask(im);
-    % imshow(faceMaskIm);
     eyeMapn = eyeMap(im, faceMaskIm);
-
     [P1, P2] = eyeDetect(eyeMapn, faceMaskIm);
+    if(P1 == -1)
+       return;
+    end
     % figure; imshow(test);
     
-    %Jossan, do your magic here :)
-%     im = rgb2gray(im); %Grayscale!
-    result = im(1:300,1:350); %Crop!
+    %% Image prerations
+    
+    % Rotates the image.
+    rotIm = faceRotation(im, P1, P2);
+    
+    % Crop Image
+    mid = [P1(1)+50 P1(2)];
+    cropIm = cropImage(rotIm, P1, height, width);
+    
+
+    result = cropIm;

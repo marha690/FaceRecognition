@@ -16,6 +16,12 @@ for k = 1:numel(S)
     %Prepare the image.
     I = temporaryFaceFinderFunction(I);
     
+    if(I ~= -1)
+            T(:,:,k) = I(:,:)'; 
+%                 figure; imshow(I);
+    end
+%     figure; imshow(I);
+    
     %Convert the image to a column vector.
-    T(:,:,k) = I(:,:)'; 
+%     T(:,:,k) = I(:,:)'; 
 end

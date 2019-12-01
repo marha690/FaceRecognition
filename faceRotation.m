@@ -9,7 +9,7 @@ P0 = [P1(1)+20 P1(2)];
 n1 = (P2 - P1) / norm(P2 - P1);
 n2 = (P0 - P1) / norm(P0 - P1);
 
-angle = acos(dot(n1, n2))       
+angle = acos(dot(n1, n2));    
 degAngle = radtodeg(angle);
 
 % Make sign of rotation correct

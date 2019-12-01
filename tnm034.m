@@ -12,12 +12,7 @@ ImageVectors = CreateDatabase();
 [mean, A, Eigenfaces] = makeEigenface(ImageVectors);
 
 
-%%
-% Rotates the image.
-%im = faceRotation(im);
-
-
 %% Test if the image is inside the database.
-
+im = im(:);
 % Find the corresponding image. Returns 0 if no match found.
 id = faceRecognition(im, mean, A, Eigenfaces);

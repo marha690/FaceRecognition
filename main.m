@@ -3,13 +3,12 @@
 % Date: 2019-11-17 to 2019-12-15
 
 clear;
-%Read in image to be tested.
-Image = imread('images/DB0/db0_1.jpg'); %Not in db.
+% Read in image to be tested.
+Image = imread('images/DB0/db0_2.jpg'); %Not in db.
+% Image = imread('images/DB1/db1_02.jpg'); %Inside db.
 
 %Find face and prepare image to be tested.
 Image2 = temporaryFaceFinderFunction(Image);
-
-% figure; imshow(Image2);
 
 %Start face recognintion process.
 value = tnm034(Image2);
