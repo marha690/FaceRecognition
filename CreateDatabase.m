@@ -17,8 +17,8 @@ for k = 1:numel(S)
     I = temporaryFaceFinderFunction(I);
     
     if(I ~= -1)
-            T(:,:,k) = I(:,:)'; 
-%                 figure; imshow(I);
+            T(:,:,k) = I(:,:); 
+%               figure; imshow(I);
     end
 %     figure; imshow(I);
     

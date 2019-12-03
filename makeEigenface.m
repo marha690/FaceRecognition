@@ -21,3 +21,4 @@ V = fliplr(V);
 
 Eigenfaces  = x * V;
 
+% imagesc(reshape(mean_matrix, [h,w]));

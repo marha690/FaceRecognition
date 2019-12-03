@@ -25,14 +25,14 @@ res = im2bw(scaled, 0.8);
 [rows, columns, numberOfColorChannels] = size(res);
 
 halfMask = zeros(rows,columns);
-halfMask(1:rows/1.5,:) = 1;
+halfMask(1:floor(rows/1.5),:) = 1;
 
 res2 = res.*halfMask;
 res = im2bw(res2, 0.5);
 
-figure; imshow(res);
-
+% figure; imshow(res);
 %% Find eyes!
+
 [centers, radii, metric] = imfindcircles(res,[5 20]);
 
 if(size(radii) < 2)
@@ -71,5 +71,5 @@ if(P1(1) > P2(1) )
     P2 = temp;
 end
 
-viscircles([P1 ;P2], [radii(index) ;radii(index2)], 'EdgeColor','b');
+% viscircles([P1 ;P2], [radii(index) ;radii(index2)], 'EdgeColor','b');
 % viscircles(centers, radii, 'EdgeColor','b');
