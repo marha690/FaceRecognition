@@ -30,4 +30,5 @@ threshold = 5000000;
 if( EucDistMin >= threshold)
     index = 0;
 end
+fprintf('Euclidian distance:');
 disp(EucDistMin);

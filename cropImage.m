@@ -1,3 +1,4 @@
+% Cropped image can have +- 1 pixel in width and height.
 function out = cropImage(im, mid, height, width)
 
 h = height/2;

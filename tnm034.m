@@ -1,18 +1,11 @@
 % Authors: Josefine Klintberg & Martin Hag
 % id: identification number for the person in the database, is 0 if no match exist.
-% im: test image in color.
+% im: Modified test image. Gray scale and same size as them in DBVariables.
 function id = tnm034(im) % 
 
-%% Database preparations
+load('DBVariables');
 
-% Read in all images from the database, store images as 1D vectors.
-ImageVectors = CreateDatabase();
+imVector = im(:);
 
-% Make the information needed for eigenface identity check.
-[mean, A, Eigenfaces] = makeEigenface(ImageVectors);
-
-
-%% Test if the image is inside the database.
-im = im(:);
 % Find the corresponding image. Returns 0 if no match found.
-id = faceRecognition(im, mean, A, Eigenfaces);
+id = faceRecognition(imVector, Mean, A, Eigenfaces);
