@@ -48,21 +48,16 @@ res = im2bw(res2, 0.5);
 
 %% Find eyes!
 
+ B = bwboundaries(re), 8);
 [L,n] = bwlabel(res);
-stats = regionprops(L, 'centroid', 'MajorAxisLength','MinorAxisLength');
+stats = regionprops(L, 'centroid');
 % Draw an asterisk 
 
 figure(1);imshow(res);
 centroids = cat(1, stats.Centroid);
 hold on
-centers = stats.Centroid;
-diameters = mean([stats.MajorAxisLength stats.MinorAxisLength],2);
-radii = diameters/2;
-centers
-for k = 1:length(centroids)
-    viscircles(centroids(k, :), radii);
-end
-viscircles(centers,radii);
+
+
 %plot(P1, P2, 'r*');
 bestPoint = 0;
 points = [];
@@ -76,25 +71,30 @@ points = [];
             point.p2 = centroids(j, :);
             point.delta = delta;
             point.eucl = euclDist;
-
+            
             points = [points point];
         end
- end
-
- bestPoint = 0;
+    end
     for i = 1:length(points)
   %      P = [centroids(i,1), centroids(i,2)]
 
          if i == 1
              bestPoint = points(i);
-        elseif bestPoint.delta(1) > points(i).delta(1) && points(i).eucl > 100 
+        elseif bestPoint.delta(1) > points(i).delta(1) && points(i).eucl > 100
             bestPoint = points(i);
          end
     end
     
-
+bestPoint = 0;
     
-
+    for i = 1:length(points)
+        if i == 1
+            bestPoint = points(i);
+        elseif bestPoint.delta(1) > points(i).delta(1) && points(i).eucl >100
+            bestPoint = points(i);
+        end
+    end
+    
 P1 = bestPoint.p1;
 P2 = bestPoint.p2;
 
