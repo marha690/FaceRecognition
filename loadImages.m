@@ -16,7 +16,7 @@ for k = 1:numel(S)
     %Prepare the image.
     I = imageModifications(I);
     
-    % Could not find the face
+    % Could find the face
     if(I ~= -1)
             T(:,:,k) = I(:,:); 
     end

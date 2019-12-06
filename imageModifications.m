@@ -1,7 +1,7 @@
 function result = imageModifications(im)
 
-    ImageHeight = 340;
-    ImageWidth = 240;
+    ImageHeight = 320;
+    ImageWidth = 220;
     PixelsBetweenEyes = 100; % Approximative
     result = -1;
     
@@ -38,3 +38,4 @@ function result = imageModifications(im)
     
     %%
     result = rgb2gray(cropIm);
+ 

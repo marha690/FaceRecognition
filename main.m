@@ -10,12 +10,13 @@ ImageVectors = loadImages();
 % Save the information needed for eigenface identity check.
 [Mean, A, Eigenfaces] = makeEigenfaces(ImageVectors);
 save('DBVariables','Mean', 'A', 'Eigenfaces');
+disp('Saved database');
 
 %% Start face recognintion process.
 
 % Read in image to be tested.
 % Image = imread('images/DB0/db0_1.jpg'); %Not in db.
-Image = imread('images/DB1/db1_01.jpg'); %Inside db.
+Image = imread('images/DB1/db1_06.jpg'); %Inside db.
 
 PreparedImage = imageModifications(Image);
 
