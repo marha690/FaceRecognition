@@ -41,7 +41,8 @@ res = im2bw(scaled, 0.6);
 [rows, columns, numberOfColorChannels] = size(res);
 
 halfMask = zeros(rows,columns);
-halfMask(1:floor(rows/1.8),:) = 1; % Show things above the mouth
+halfMask(1:floor(rows/1.8),:) = 1; % 
+halfMask(1:floor(rows*0.4),:) = 0; % Show things above the mouth
 halfMask(:,1:floor(columns/4)) = 0; % Mask left side of image.
 halfMask(:,floor(columns*3/4):columns) = 0; % Mask right side of image.
 

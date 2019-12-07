@@ -15,8 +15,8 @@ disp('Saved database');
 %% Start face recognintion process.
 
 % Read in image to be tested.
-Image = imread('images/DB0/db0_1.jpg'); %Not in db.
-% Image = imread('images/DB1/db1_01.jpg'); %Inside db.
+% Image = imread('images/DB0/db0_1.jpg'); %Not in db.
+Image = imread('images/DB1/db1_02.jpg'); %Inside db.
 
 PreparedImage = imageModifications(Image);
 
