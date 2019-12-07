@@ -19,7 +19,7 @@ Cb = YCbCr(:,:,2);
 Cr = YCbCr(:,:,3);
 
 %% Detect skin, find from threshold in color
-[r,c,v] = find(Cb>=70 & Cb<=135 & Cr>=125 & Cr<=190 & Y>70 & Y<180);
+[r,c,v] = find(Cb>=70 & Cb<=135 & Cr>=125 & Cr<=190 & Y>70 & Y<255);
     numind = size(r,1);
 
 for i=1:numind

@@ -95,8 +95,8 @@ points = [];
 
     
 
-P1 = bestPoint.p1;
-P2 = bestPoint.p2;
+P1 = bestPoint.p1
+P2 = bestPoint.p2
 
 plot(P1, P2, 'rx');
 

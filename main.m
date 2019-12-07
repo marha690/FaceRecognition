@@ -15,7 +15,7 @@ save('DBVariables','Mean', 'A', 'Eigenfaces');
 
 % Read in image to be tested.
 % Image = imread('images/DB0/db0_1.jpg'); %Not in db.
-Image = imread('images/DB1/db1_03.jpg'); %Inside db.
+Image = imread('images/DB1/db1_02.jpg'); %Inside db.
 
 PreparedImage = imageModifications(Image);
 

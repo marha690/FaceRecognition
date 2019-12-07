@@ -16,10 +16,11 @@ for k = 1:numel(S)
     %Prepare the image.
     I = imageModifications(I);
     
-    T = siz
+    T = size(I);
     % Could not find the face
     if(I ~= -1)
             T(:,:,k) = I(:,:); 
+    
     end
 
 end
