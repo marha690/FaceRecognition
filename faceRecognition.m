@@ -1,8 +1,8 @@
 function index = faceRecognition(InputImage, m, A, Eigenfaces)
 
 ProjectedImages = [];
-Train_Number = size(Eigenfaces,2);
-for i = 1 : Train_Number
+NumberImages = size(Eigenfaces,2);
+for i = 1 : NumberImages
     temp = Eigenfaces'*A(:,i); % Projection of centered images into facespace
     ProjectedImages = [ProjectedImages temp]; 
 end
@@ -18,7 +18,7 @@ ProjectedTestImage = Eigenfaces'*Difference; % Test image feature vector
 
 % Calculating Euclidean distances 
 EucDist = [];
-for i = 1 : Train_Number
+for i = 1 : NumberImages
     q = ProjectedImages(:,i);
     temp = ( norm( ProjectedTestImage - q ) )^2;
     EucDist = [EucDist temp];
@@ -26,7 +26,7 @@ end
 
 [EucDistMin , index] = min(EucDist);
 
-threshold = 5000000;
+threshold = 1.3e16;
 if( EucDistMin >= threshold)
     index = 0;
 end

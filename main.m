@@ -16,7 +16,9 @@ disp('Saved database');
 
 % Read in image to be tested.
 % Image = imread('images/DB0/db0_1.jpg'); %Not in db.
-Image = imread('images/DB1/db1_02.jpg'); %Inside db.
+% Image = imread('images/DB1/db1_02.jpg'); %Inside db.
+Image = imread('images/DB2/bl_01.jpg'); %Inside db.
+% Image = imread('images/rotated/db1_06.jpg'); %Inside db.
 
 PreparedImage = imageModifications(Image);
 
@@ -24,9 +26,9 @@ value = tnm034(PreparedImage);
 
 % Show result to the user.
 if(value == 0)
-    fprintf('Match not foud.\n');
+    fprintf('Match not found.\n');
 else 
-    fprintf('Match foud.\n');
+    fprintf('Match found.\n');
     fprintf('The person has ID:');
     disp(value);
 end;
