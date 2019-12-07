@@ -15,10 +15,10 @@ for k = 1:numel(S)
     [P1, P2] = eyeDetect(eyeMapn, faceMaskIm);
 
     %Show raw image from database.
-%     figure; imshow(im);
+    figure; imshow(im);
     
     %Show Image which is used to detect blobs when finding eyes.
-    figure; imshow(combinedMask(eyeMapn, faceMaskIm));
+%     figure; imshow(combinedMask(eyeMapn, faceMaskIm));
     
     
     % Show blue dots for eyes.
