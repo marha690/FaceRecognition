@@ -6,6 +6,8 @@ function T = loadImages()
 DirPath = 'Images/DB1/'; % File Path
 S = dir(fullfile(DirPath,'db1_*.jpg')); % Pattern to match filenames.
 
+% Add if file not found (db2), continue
+
 %% Read in all images inside the database
 for k = 1:numel(S)
     

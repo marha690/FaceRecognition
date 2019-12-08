@@ -16,12 +16,14 @@ disp('Saved database');
 
 % Read in image to be tested.
 % Image = imread('images/DB0/db0_1.jpg'); %Not in db.
-% Image = imread('images/DB1/db1_02.jpg'); %Inside db.
-Image = imread('images/DB2/bl_01.jpg'); %Inside db.
+% Image = imread('images/DB1/db1_11.jpg'); %Inside db.
+% Image = imread('images/DB2/il_16.jpg'); %Inside db.
 % Image = imread('images/rotated/db1_06.jpg'); %Inside db.
+ Image = imread('images/DB1/comb/db1_06.jpg'); %Inside db.
 
 PreparedImage = imageModifications(Image);
-
+%Prep = rgb2gray(PreparedImage);
+%figure; imshow(Prep);
 value = tnm034(PreparedImage);
 
 % Show result to the user.

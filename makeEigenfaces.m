@@ -1,22 +1,20 @@
 % mean_matrix: mean values saved in a 1D image vector
-function [mean_matrix, x, Eigenfaces] = makeEigenfaces(inData)
+function [Mean, A, Eigenfaces] = makeEigenfaces(inData)
 
 [h,w,n] = size(inData);
 d = h*w;
-% Vectorize images
-x = reshape(inData,[d n]);
-x = double(x);
-% Subtract mean
-mean_matrix = mean(x,2);
-x = bsxfun(@minus, x, mean_matrix);
+% % Vectorize images
+ims = reshape(inData,[d n]);
+ims = double(ims);
 
-% obtain eigenvalue & eigenvector
-s =  x' * x; % Covariance, sort of
-[V,D] = eig(s);
-eigval = diag(D);
+% Create the mean face
+Mean = mean(ims, 2);
 
-% Sort eigenvalues in descending order
-eigval = eigval(end:-1:1);
-V = fliplr(V);
+% Subtract mean face from each face.
+Diff2MeanFace = ims-Mean;
 
-Eigenfaces  = x * V;
+[eigenVectors,~] = eigs(transpose(Diff2MeanFace)*Diff2MeanFace, 16);
+Eigenfaces = Diff2MeanFace*eigenVectors;
+
+% Calculate the weights
+A = transpose(Eigenfaces)*Diff2MeanFace;
