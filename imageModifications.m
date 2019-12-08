@@ -62,5 +62,6 @@ function result = imageModifications(im)
 
     %%
     result = lightCorrection(cropIm);
+ 	result = imsharpen(result,'Radius',2,'Amount',1);
     figure; imshow(result);
  
