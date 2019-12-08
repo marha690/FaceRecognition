@@ -6,6 +6,14 @@ NumberImages = size(Eigenfaces,2);
 % Extracting the PCA features from test image
 tempImage = InputImage(:,:,1);
 
+[w h] = size(tempImage);
+[w2 h2] = size(m);
+
+if(w ~= h2 & h ~= w2)
+   index = 0;
+   return;
+end
+
 Diff2Mean = double(tempImage) - m; %Subtracting the mean
 newWeight = transpose(Eigenfaces)*Diff2Mean;
 
