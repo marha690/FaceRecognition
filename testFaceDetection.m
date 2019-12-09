@@ -4,6 +4,7 @@ DirPath = 'Images/DB1/'; % File Path
 S = dir(fullfile(DirPath,'db1_*.jpg')); % Pattern to match filenames.
 
 %% Read in all images inside the database
+figure;
 for k = 1:numel(S)
     
     % Read one image from database folder.
@@ -14,8 +15,9 @@ for k = 1:numel(S)
     eyeMapn = eyeMap(im, faceMaskIm);
     [P1, P2] = eyeDetect(eyeMapn, faceMaskIm);
 
+    subplot(2, ceil(numel(S)/2), k);
     %Show raw image from database.
-    figure; imshow(im);
+    imshow(im);
     
     %Show Image which is used to detect blobs when finding eyes.
 %     figure; imshow(combinedMask(eyeMapn, faceMaskIm));

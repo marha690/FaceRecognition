@@ -9,7 +9,7 @@ tempImage = InputImage(:,:,1);
 [w h] = size(tempImage);
 [w2 h2] = size(m);
 
-if(w ~= h2 & h ~= w2)
+if(w ~= w2 | h ~= h2)
    index = 0;
    return;
 end
