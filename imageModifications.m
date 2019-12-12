@@ -79,12 +79,10 @@ function result = imageModifications(im)
     ImageWidth = 220;
     PixelsBetweenEyes = 100; % Approximative
     result = -1;
-    
-    %% Gray world lighting compensation
-%     im = lightCorrection(im);
 
     %% Rotates the image.
     faceMaskIm = faceMask(im);
+    figure; imshow(faceMaskIm);
     eyeMapn = eyeMap(im, faceMaskIm);
     [P1, P2] = eyeDetect(eyeMapn, faceMaskIm, im);
     if(P1 == -1)

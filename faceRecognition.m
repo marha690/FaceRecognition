@@ -19,7 +19,7 @@ newWeight = transpose(Eigenfaces)*Diff2Mean;
 
 %% Take out the top five min dist and compare (fisherface, light version)
 
-threshold = 8 * 10^8;
+threshold = 9.3 * 10^8;
 
 
 theMins = sum(sqrt((A-newWeight).^2));
@@ -47,7 +47,7 @@ if(id3 == 0)
 end
 
 
-IDarray = [id1, id2, id3];
+IDarray = [id1, id2, id3]
 occurences = 1;
 minDiff = 0;
 
