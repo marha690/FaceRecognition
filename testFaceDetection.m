@@ -1,3 +1,4 @@
+% A function to test see the eye points in a number of images at once.
 function testFaceDetection()
 
 DirPath = 'Images/DB1/'; % File Path
@@ -14,12 +15,8 @@ for k = 1:numel(S)
     eyeMapn = eyeMap(im, faceMaskIm);
     [P1, P2] = eyeDetect(eyeMapn, faceMaskIm);
 
-    %Show raw image from database.
+    %Show original image from database.
     figure; imshow(im);
-    
-    %Show Image which is used to detect blobs when finding eyes.
-%     figure; imshow(combinedMask(eyeMapn, faceMaskIm));
-    
     
     % Show blue dots for eyes.
     if(P1 ~= -1)

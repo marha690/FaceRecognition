@@ -1,3 +1,7 @@
+% Find areas inside a binary image and returns their mean-positions
+% NumOfBLobs: Number of blobs found.
+% BlobsPos: array of 2D vectors where the mean position for the blobs are
+% stored.
 function [NumOfBlobs, BlobsPos] = blobData(binaryImage)
 %% Find blobs
 [LabelImage, NumOfBlobs] = bwlabel(binaryImage,4);
@@ -18,7 +22,7 @@ end
 
 %% Sort the array depending on size. Largest to smallest.
 BlobsPos = zeros(NumOfBlobs, 2);
-[XXX, Indexes] = sort(BlobSize);
+[~, Indexes] = sort(BlobSize);
 for i = 1:NumOfBlobs
     
     Index = find(Indexes == i);

@@ -1,11 +1,8 @@
-% Im: image
-% out: rotated image.
-% P1 is the eye left on the screen compared to eye P2.
-function out = faceRotation(im, P1, P2)
+% P1 is the eye left on the screen and P2 the right eye.
+function RotImage = faceRotation(im, P1, P2)
 
-% Calculate angle to rotate
+% Calculate the angle to rotate
 P0 = [P1(1)+20 P1(2)];
-
 n1 = (P2 - P1) / norm(P2 - P1);
 n2 = (P0 - P1) / norm(P0 - P1);
 
@@ -16,5 +13,5 @@ degAngle = radtodeg(angle);
 if( P1(2) > P2(2) )
     degAngle = degAngle * -1;
 end
-% Rotates in degrees.
-out = imrotate(im,degAngle,'bilinear','crop');
+% Rotates with degrees.
+RotImage = imrotate(im,degAngle,'bilinear','crop');

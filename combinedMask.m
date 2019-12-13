@@ -1,54 +1,31 @@
+%% Make eyeMap and faceMask into one mask for eyes.
 function result = combinedMask(eyeMapImage, faceMaskIm)
 
-%% Make a mask from eyeMap and faceMask.
-% figure; imshow(faceMaskIm);
-% figure; imshow(eyeMapImage);
-
-
+% Blur the eye map
 se1 = strel('disk', 10,8);
 eyeMapBlur = imdilate(eyeMapImage, se1);
 
+% Remove edges from face mask
 se2 = strel('disk', 10,8);
 faceMaskIm = imerode(faceMaskIm, se2);
 
-
-
+% Normalize the colors between 0 and 1
 BW2 = eyeMapBlur.*faceMaskIm;
 Max = max(BW2(:));
 Min = min(BW2(:));
 scaled = (BW2 - Min) ./ (Max - Min);
 
-% figure; imshow(scaled);
 
-% Final mask
-se1 = strel('disk', 10,8);
-eyeMapBlur = imdilate(eyeMapImage, se1);
+Mask = im2bw(scaled, 0.6);
+[rows, columns, ~] = size(Mask);
 
-se2 = strel('disk', 10,8);
-faceMaskIm = imerode(faceMaskIm, se2);
+% Masks for edges in the image
+EdgeMask = zeros(rows,columns);
+EdgeMask(1:floor(rows/1.8),:) = 1; % show everything exept the bottom part.
+EdgeMask(1:floor(rows*0.4),:) = 0; % mask top of the image.
+EdgeMask(:,1:floor(columns/4)) = 0; % Mask left side of image.
+EdgeMask(:,floor(columns*3/4):columns) = 0; % Mask right side of image.
+Mask = Mask.*EdgeMask;
 
-%figure; imshow(faceMaskIm);
-
-BW2 = eyeMapBlur.*faceMaskIm;
-Max = max(BW2(:));
-Min = min(BW2(:));
-scaled = (BW2 - Min) ./ (Max - Min);
-
-% figure; imshow(scaled);
-
-% Final mask
-res = im2bw(scaled, 0.6);
-[rows, columns, numberOfColorChannels] = size(res);
-
-halfMask = zeros(rows,columns);
-halfMask(1:floor(rows/1.8),:) = 1; % 
-halfMask(1:floor(rows*0.4),:) = 0; % Show things above the mouth
-halfMask(:,1:floor(columns/4)) = 0; % Mask left side of image.
-halfMask(:,floor(columns*3/4):columns) = 0; % Mask right side of image.
-
-res2 = res.*halfMask;
-res = im2bw(res2, 0.5);
-
- [rows, cols] = size(res);
-
- result = 255.*double(res)./max(max(double(res)));
+BinaryResult = im2bw(Mask, 0.5);
+result = 255.*double(BinaryResult)./max(max(double(BinaryResult)));

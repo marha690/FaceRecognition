@@ -1,4 +1,4 @@
-function index = faceRecognition(InputImage, m, A, Eigenfaces)
+function index = faceRecognition(InputImage, m, Weights, Eigenfaces)
 
 ProjectedImages = [];
 NumberImages = size(Eigenfaces,2);
@@ -21,8 +21,7 @@ newWeight = transpose(Eigenfaces)*Diff2Mean;
 
 threshold = 9.3 * 10^8;
 
-
-theMins = sum(sqrt((A-newWeight).^2));
+theMins = sum(sqrt((Weights-newWeight).^2));
 theMinsSort = sort(theMins);
 one = theMinsSort(1);
 id1 = find(theMins == one); id1 = mod(id1, 16);
@@ -52,7 +51,7 @@ occurences = 1;
 minDiff = 0;
 
 if((id1 ~= id2 & id1 ~= id3 & id2 ~= id3) | (one < 10^3))
-    [minDiff, index] = min(sum(sqrt((A-newWeight).^2))); % Find image with minimum euclidian distance
+    [minDiff, index] = min(sum(sqrt((Weights-newWeight).^2))); % Find image with minimum euclidian distance
 else %Some ids match, uncertainty around correct ID, check the most like person
     index = mode(IDarray);
     for(i = 1:3)
@@ -70,9 +69,9 @@ end
 minDiff = minDiff/occurences
 %[minDiff, index] = min(sum(sqrt((A-newWeight).^2))); % Find image with minimum euclidian distance
 
-fprintf('Euclidian distance:');
-disp(index);
-disp(minDiff);
+% fprintf('Euclidian distance:');
+% disp(index);
+% disp(minDiff);
 
 if (minDiff > threshold) % Setting threshold 
        index = 0;
