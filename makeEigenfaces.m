@@ -1,10 +1,15 @@
-% mean_matrix: mean values saved in a 1D image vector
-function [Mean, A, Eigenfaces] = makeEigenfaces(inData)
+function [Mean, Weights, Eigenfaces] = makeEigenfaces(Images)
+% Creates eigenface representation from input data
+% Mean: mean values saved in a 1D image vector
+% Weights: weights for eigenfaces
+% Eigenfaces: eigenvectors for corresponding face
+% The input, Images, need to be grayscale images
 
-[h,w,n] = size(inData);
+[h,w,n] = size(Images);
 d = h*w;
-% % Vectorize images
-ims = reshape(inData,[d n]);
+
+%% Vectorize images
+ims = reshape(Images,[d n]);
 ims = double(ims);
 
 % Create the mean face
@@ -16,5 +21,6 @@ Diff2MeanFace = ims-Mean;
 [eigenVectors,~] = eigs(transpose(Diff2MeanFace)*Diff2MeanFace, 16);
 Eigenfaces = Diff2MeanFace*eigenVectors;
 
-% Calculate the weights
-A = transpose(Eigenfaces)*Diff2MeanFace;
+%% Calculate the weights
+
+Weights = transpose(Eigenfaces)*Diff2MeanFace;

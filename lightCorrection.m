@@ -2,6 +2,8 @@ function lightCorrectedIm = lightCorrection(inputImage)
 %Light correction, checks if the lightning in the image is 
 %sufficient. If not, perform grayworld compensation.
 
+%% Step 1, check the distribution of intensities and the top 5%
+
 SortedPixelValues = reshape(inputImage,[],size(inputImage,3),1);
 SortedPixelValues = sort(SortedPixelValues);
 
@@ -17,10 +19,8 @@ AR = mean(TopPixels(:,1));
 AG = mean(TopPixels(:,2));
 AB = mean(TopPixels(:,3));
 
-% test = blendexposure(inputImage, 'contrast',0.8,'saturation',0.8,'wellexposedness',0.8,'reduceStrongLight',false);
-% figure; imshow(test);
+%% Step 2: Test if there is interferance in color
 
-%% Step 2: Test is there is interferance in color
 Value = max(max(AR,AG),AB) / min(min(AR,AG),AB);
 Acceptance = 0.01;
 

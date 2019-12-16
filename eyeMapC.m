@@ -25,7 +25,6 @@ cb_cr = rescale(cb_cr)*255;
 
 eyeMap = 1/3 * (cb2 + invCr2 + cb_cr);
 eyeMap = rescale(eyeMap); %Normalize between [0,1]
-%imshow(eyeMap);
 
 eyeMapChrominance = eyeMap;
 end

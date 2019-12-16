@@ -1,5 +1,6 @@
-% Cropped image can have +- 1 pixel in width and height.
 function out = cropImage(im, mid, height, width)
+%% Crops image to set height and width
+% Cropped image can have +- 1 pixel in width and height.
 
 h = height/2;
 w = width/2;

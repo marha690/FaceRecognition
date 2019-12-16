@@ -1,4 +1,12 @@
-function index = faceRecognition(InputImage, m, A, Eigenfaces)
+function index = faceRecognition(InputImage, Mean, Weights, Eigenfaces)
+% Compares the input image to known faces in database
+
+%% Thresholds
+
+threshold = 9.3 * 10^8;
+thresholdLow = 10^3;
+
+%% PCA
 
 ProjectedImages = [];
 NumberImages = size(Eigenfaces,2);
@@ -7,22 +15,20 @@ NumberImages = size(Eigenfaces,2);
 tempImage = InputImage(:,:,1);
 
 [w h] = size(tempImage);
-[w2 h2] = size(m);
+[w2 h2] = size(Mean);
 
+% Check image dimensions, if error occured, return
 if(w ~= w2 & h ~= h2)
    index = 0;
    return;
 end
 
-Diff2Mean = double(tempImage) - m; %Subtracting the mean
+Diff2Mean = double(tempImage) - Mean; %Subtracting the mean
 newWeight = transpose(Eigenfaces)*Diff2Mean;
 
-%% Take out the top five min dist and compare (fisherface, light version)
+%% Take out the top three min dist and compare (fisherface, light version)
 
-threshold = 9.3 * 10^8;
-
-
-theMins = sum(sqrt((A-newWeight).^2));
+theMins = sum(sqrt((Weights-newWeight).^2));
 theMinsSort = sort(theMins);
 one = theMinsSort(1);
 id1 = find(theMins == one); id1 = mod(id1, 16);
@@ -46,38 +52,34 @@ if(id3 == 0)
     id3 = 16;
 end
 
-
-IDarray = [id1, id2, id3]
+IDarray = [id1, id2, id3];
 occurences = 1;
 minDiff = 0;
 
-if((id1 ~= id2 & id1 ~= id3 & id2 ~= id3) | (one < 10^3))
-    [minDiff, index] = min(sum(sqrt((A-newWeight).^2))); % Find image with minimum euclidian distance
-else %Some ids match, uncertainty around correct ID, check the most like person
+
+if((id1 ~= id2 & id1 ~= id3 & id2 ~= id3) | (one < thresholdLow)) % If equally alike all 3 min, or extremely alike the top one
+    [minDiff, index] = min(sum(sqrt((Weights-newWeight).^2))); % Find image with minimum euclidian distance
+else %Some ids match, uncertainty around correct ID, check the most likely person and compute mean euclidian distance
     index = mode(IDarray);
     for(i = 1:3)
         if(i == 1)
             minDiff = theMinsSort(1);
         end
         if(IDarray(i) == index)
-            occurences = occurences + 1
-            minDiff = minDiff + theMinsSort(i)
+            occurences = occurences + 1;
+            minDiff = minDiff + theMinsSort(i);
         end
     end
-%    minDiff = theMins(index);
 end
 
-minDiff = minDiff/occurences
-%[minDiff, index] = min(sum(sqrt((A-newWeight).^2))); % Find image with minimum euclidian distance
+minDiff = minDiff/occurences;
 
-fprintf('Euclidian distance:');
-disp(index);
-disp(minDiff);
+%fprintf('Euclidian distance:');
+%disp(index);
+%disp(minDiff);
 
-if (minDiff > threshold) % Setting threshold 
+if (minDiff > threshold) % Check if close enough to decide match
        index = 0;
        return;
  end
-    
-
-
+  

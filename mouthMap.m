@@ -26,7 +26,7 @@ cr_cb = rescale(cr_cb)*255;
 
 mouthMap =  cr2.*(cr2 - ((cr_cb))).^2;
 mouthMap = rescale(mouthMap);
-imshow(mouthMap);
+
 mouthMapImage = mouthMap;
 end
 

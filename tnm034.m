@@ -5,18 +5,20 @@ function id = tnm034(im) %
 
 load('DBVariables');
 
-imVector = im(:);
+im = imageModifications(im);
 
-% Find the corresponding image. Returns 0 if no match found.
-% id = faceRecognition(imVector, Mean, A, Eigenfaces);
+imVector = im(:); %Convert image to vector, 1D
 
-index = faceRecognition(imVector, Mean, A, Eigenfaces);
+%%  Find the corresponding image
+index = faceRecognition(imVector, Mean, Weights, Eigenfaces);
 
-%Match not found
+%% Check if match not found
 if(index == 0)
     id = 0;
     return;
 end
+
+%% Hash function, turn index into corresponding id
 
 id = mod(index, 16);
 if(id == 0)
