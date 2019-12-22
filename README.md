@@ -1,5 +1,5 @@
 # FaceRecognition
-This is an algorithm for face detection and face recognition in still images using PCA and eigenfaces. The algorithm was implemented as part of the course 'Advanced Image Processing and Analysis' (TNM034) during 4 weeks in the fall of 2019 by [Martin Hag](https://github.com/marha690 "Martin's Github") and [Josefine Klintberg](https://github.com/jklintan "Josefine's Github"). 
+This is an algorithm for face detection and face recognition in still images using PCA and eigenfaces. The algorithm was implemented as part of the course 'Advanced Image Processing and Analysis' [TNM034](https://liu.se/studieinfo/en/kurs/tnm034/ht-2019 "Syllabus and Course Information") during 4 weeks in the fall of 2019 by [Martin Hag](https://github.com/marha690 "Martin's Github") and [Josefine Klintberg](https://github.com/jklintan "Josefine's Github"). 
 
 The algorithm recieved a recognition rate of 88% for a limited database of 16 faces (from the Caltech face database) with additional transformations such as scaling, translation, in-plane rotation and changes in tone values.  
 
