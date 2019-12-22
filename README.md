@@ -7,9 +7,9 @@ The algorithm recieved a recognition rate of 88% for a limited database of 16 fa
 
 <h2>Face mask</h2>
 The usage of a face mask is to only keep relevant areas usable for the face detection algorithm by masking out the face. The face mask is created by finding the skin tone for humans in the image. Since the skin tones in the face is better described in YCbCr, than RGB values, the image is converted into the YCbCr color space. This color space is described by a luma component, Y, and the blue-difference component, Cb, and the red-difference component, Cr. Thresholds are used to limit all channels individually so only the skin color area are kept in the image, we found that the limits below represented the skin tones in our databases in a good way for implementation of the face mask. 
-
+<br/>
 <p align="center"><img src="./img/facemaskes.jpg"/></p>
-
+<br/>
 The area for the skin color is made into a binary image which is the foundation for the mask. Morphological operations are then applied to the image to clean it from small irregularities. The operations used are in following order opening, closing, dilation. A flood fill algorithm is then used followed by erosion which becomes the final mask.
 
 <h2>Eye maps</h2>
@@ -40,6 +40,6 @@ The method of principal component analysis is used for reducing the resolution o
 
 Face comparison between an input image and the images in the database can then be done by calculating the euclidian distance between them, by using the weights. 
 <br/>
-<p align="center"><img src="./img/mreig.jpg"/>
-<img src="./img/mrseig.jpg"/>
+<p align="center"><img src="./img/mreig.jpg"/><br/>
+<img src="./img/mrseig.jpg"/><br/>
 <i>Visualization of eigenfaces</i></p>
