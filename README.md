@@ -7,14 +7,14 @@ The algorithm recieved a recognition rate of 88% for a limited database of 16 fa
 
 <h2>Face mask</h2>
 The usage of a face mask is to only keep relevant areas usable for the face detection algorithm by masking out the face. The face mask is created by finding the skin tone for humans in the image. Since the skin tones in the face is better described in YCbCr, than RGB values, the image is converted into the YCbCr color space. This color space is described by a luma component, Y, and the blue-difference component, Cb, and the red-difference component, Cr. Thresholds are used to limit all channels individually so only the skin color area are kept in the image, we found that the limits below represented the skin tones in our databases in a good way for implementation of the face mask. 
-<br/>
+<br/> &nbsp
 <p align="center"><img src="./img/facemaskes.jpg"/></p>
 <br/>
 The area for the skin color is made into a binary image which is the foundation for the mask. Morphological operations are then applied to the image to clean it from small irregularities. The operations used are in following order opening, closing, dilation. A flood fill algorithm is then used followed by erosion which becomes the final mask.
 
 <h2>Eye maps</h2>
 A good way to identify a face is to find the eyes. An eye map can be produced using the fact that the eyes has tones which are distinct from the rest of the face. The approach used is to combine two separate methods of making a eye map because with the use of two methods, the chances of finding the eyes will increase. The two maps are using information inside the chrominance component and the luminance component of the image and then combined into one image and turned into a binary mask. Additional morphological operations are then performed to clean up the binary image. 
-<br/>
+<br/> &nbsp
 <p align="center"><img src="./img/eyemaps.jpg"/>
 <img src="./img/eyemapsMorph.jpg"/></p>
 <br/>
@@ -39,7 +39,7 @@ Additionally, a test to check light interference are used and if the light is no
 The method of principal component analysis is used for reducing the resolution of the images and the images are now represented as a vector. From each vector, the mean-face is subtracted, then the covariance matrix are found and the eigenvectors calculated. Each eigenvector can be expressed as a linear combination of weights and all weights for the database are stored as a matrix before the running of the program to reduce calculation time.
 
 Face comparison between an input image and the images in the database can then be done by calculating the euclidian distance between them, by using the weights. 
-<br/>
+<br/> &nbsp
 <p align="center"><img src="./img/mreig.jpg"/><br/>
 <img src="./img/mrseig.jpg"/><br/>
 <i>Visualization of eigenfaces</i></p>
