@@ -4,6 +4,7 @@ This is an algorithm for face detection and face recognition in still images usi
 The algorithm recieved a recognition rate of 88% for a limited database of 16 faces (from the Caltech face database) with additional transformations such as scaling, translation, in-plane rotation and changes in tone values.  
 
 <h1>Algorithm Walkthrough</h1>
+Face recognition is the task of identifying, from an input image of a face, the person in the image by comparing the input image with people existing in a database. The face recognition process is closely linked to the face detection process, without a well functional face detection algorithm, the recognition step will never be able to work. In this project, the face recognition builds upon an appearance-based method for face detection with the use of Principal Component Analysis (PCA) and the concept of eigenfaces. 
 
 <h2>Face mask</h2>
 The usage of a face mask is to only keep relevant areas usable for the face detection algorithm by masking out the face. The face mask is created by finding the skin tone for humans in the image. Since the skin tones in the face is better described in YCbCr, than RGB values, the image is converted into the YCbCr color space. This color space is described by a luma component, Y, and the blue-difference component, Cb, and the red-difference component, Cr. Thresholds are used to limit all channels individually so only the skin color area are kept in the image, we found that the limits below represented the skin tones in our databases in a good way for implementation of the face mask. 
